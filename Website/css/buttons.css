@@ -1,0 +1,20 @@
+.addToCart_button {
+    text-align: center;
+}
+
+.add_to_cart {
+  border: none;
+  background-color: lightsalmon;
+  color: black;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.add_to_cart:hover {
+  background-color: lightcoral;
+  color: black;
+}

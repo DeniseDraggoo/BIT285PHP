@@ -28,35 +28,53 @@
 
 
     
-<!--  ****** Currency Converter API ******  
-        rapidapi.com/natkapral/api/currency-converter5-->
+<!--     ****** API ******
+
+
+    http://data.fixer.io/api/latest?access_key=07da728c58624fae0d1ba138ad5acf88
     
-<?php
-
-$client = new http\Client;
-$request = new http\Client\Request;
-
-$request->setRequestUrl('https://currency-converter5.p.rapidapi.com/currency/convert');
-$request->setRequestMethod('GET');
-$request->setQuery(new http\QueryString([
-	'format' => 'json',
-	'from' => 'AUD',
-	'to' => 'CAD',
-	'amount' => '1'
-]));
-
-$request->setHeaders([
-	'x-rapidapi-key' => 'fc528f66cfmsh520a9894ec284fbp147d31jsn81cdcc997538',
-	'x-rapidapi-host' => 'currency-converter5.p.rapidapi.com'
-]);
-
-$client->enqueue($request)->send();
-$response = $client->getResponse();
-
-echo $response->getBody(); 
+    http://data.fixer.io/api/convert
+    ? access_key = API_KEY
+    & from = GBP
+    & to = JPY
+    & amount = 25
     
-?>
     
+    {
+    "success": true,
+    "query": {
+        "from": "GBP",
+        "to": "JPY",
+        "amount": 25
+    },
+    "info": {
+        "timestamp": 1519328414,
+        "rate": 148.972231
+    }
+}
+
+-->   
+    
+<?php 
+// set API Endpoint and API key 
+$endpoint = 'latest';
+$access_key = 'API_KEY';
+
+// Initialize CURL:
+$ch = curl_init('http://data.fixer.io/api/'.$endpoint.'?access_key='.$07da728c58624fae0d1ba138ad5acf88.'');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Store the data:
+$json = curl_exec($ch);
+curl_close($ch);
+
+// Decode JSON response:
+$exchangeRates = json_decode($json, true);
+
+// Access the exchange rate values, e.g. GBP:
+echo $exchangeRates['rates']['GBP'];    
+    
+?>  
     
     
 <section class="content" id="duckie_list">
