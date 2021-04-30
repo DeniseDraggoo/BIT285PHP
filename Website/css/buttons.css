@@ -18,3 +18,15 @@
   background-color: lightcoral;
   color: black;
 }
+
+
+.cart_button {
+  float: right;
+  border: none;
+  color: black;
+  padding: 10px 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 24px;
+  cursor: pointer; 
+}
