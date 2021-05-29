@@ -20,6 +20,11 @@
 <section class="header" id="header">
     <header>
         <h1>Duckie Land</h1>
+        <form action="cart.php" method="post">
+            <div class="cart_button">
+            <input type="submit" value="Cart">
+            </div>
+        </form>
     </header>
 </section>
     
@@ -55,13 +60,13 @@
 
 -->   
     
-<?php 
+<?php /*
 // set API Endpoint and API key 
 $endpoint = 'latest';
 $access_key = 'API_KEY';
 
 // Initialize CURL:
-$ch = curl_init('http://data.fixer.io/api/'.$endpoint.'?access_key='.$07da728c58624fae0d1ba138ad5acf88.'');
+//$ch = curl_init('http://data.fixer.io/api/'.$endpoint.'?access_key='.$07da728c58624fae0d1ba138ad5acf88.'');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 // Store the data:
@@ -73,6 +78,13 @@ $exchangeRates = json_decode($json, true);
 
 // Access the exchange rate values, e.g. GBP:
 echo $exchangeRates['rates']['GBP'];    
+  */  
+    
+
+        include ("dbconnect.php");
+        $query = "SELECT * FROM duckies WHERE duckie_name = 'Flower-Power'";
+        $result = mysqli_query($conn, $query); 
+        $row = mysqli_fetch_row($result);    
     
 ?>  
     
@@ -83,43 +95,66 @@ echo $exchangeRates['rates']['GBP'];
             <img src="images/duck_flowered.jpg" alt="Duckie with flowers on body">
         </div>
         <div class="col-4">
-            <p>Flower-Power Duckie <br> $3.95</p>
+            <p><a href="flowerpower_duckie.php">Flower-Power Duckie </a><br> $<?php echo $row[2];?></p>
         </div>
     </div>
     
+    <?php 
+        $query = "SELECT * FROM duckies WHERE duckie_name = 'Graduate'";
+        $result = mysqli_query($conn, $query); 
+        $row = mysqli_fetch_row($result); 
+    ?>   
     <div class="row py-3">
         <div class="col-3 offset-1">
             <img src="images/duck_graduate.jpg" alt="Graduate duckie">
         </div>
         <div class="col-4">
-            <p>Graduate Duckie <br> $4.45</p>
+            <p><a href="graduate_duckie.php">Graduate Duckie </a><br> $<?php echo $row[2];?></p>
         </div>
     </div>
     
+    <?php 
+        $query = "SELECT * FROM duckies WHERE duckie_name = 'Firefighter'";
+        $result = mysqli_query($conn, $query); 
+        $row = mysqli_fetch_row($result); 
+    ?>   
+    
     <div class="row py-3">
         <div class="col-3 offset-1">
-            <a href="firefighter_duckie.html"><img src="images/duck_firefighter.jpg" alt="Duckie with firefighter uniform"></a>
+            <a href="firefighter_duckie.php"><img src="images/duck_firefighter.jpg" alt="Duckie with firefighter uniform"></a>
         </div>
         <div class="col-4">
-            <p><a href="firefighter_duckie.html"> Firefighter Duckie<br>$2.95</a></p>
+            <p><a href="firefighter_duckie.php"> Firefighter Duckie</a><br>$<?php echo $row[2];?></p>
         </div>
     </div>
+    
+    <?php 
+        $query = "SELECT * FROM duckies WHERE duckie_name = 'Surgeon_Nurse'";
+        $result = mysqli_query($conn, $query); 
+        $row = mysqli_fetch_row($result); 
+    ?>   
     
     <div class="row py-3">
         <div class="col-3 offset-1">
             <img src="images/duck_surgeon_nurse.jpg" alt="Surgeon and nurse duckies">
         </div>
         <div class="col-4">
-            <p>Surgeon and Nurse Duckies <br> $5.95 each</p>
+            <p><a href="surgeonnurse_duckie.php">Surgeon and Nurse Duckies </a><br> $<?php echo $row[2];?></p>
         </div>
     </div>
+    
+    <?php 
+        $query = "SELECT * FROM duckies WHERE duckie_name = 'Unicorn'";
+        $result = mysqli_query($conn, $query); 
+        $row = mysqli_fetch_row($result); 
+    ?>   
     
     <div class="row py-3">
         <div class="col-3 offset-1">
             <img src="images/duck_unicorns.jpg" alt="Unicorn duckies">
         </div>
         <div class="col-4">
-            <p>Unicorn Duckie <br> $4.65 each</p>
+            <p><a href="unicorn_duckie.php">Unicorn Duckie </a><br> $<?php echo $row[2];?></p>
         </div>
     </div>
     

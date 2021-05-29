@@ -18,6 +18,17 @@
 </head>
     
 <body>
+    <?php
+        include ("dbconnect.php");
+        $query = "SELECT * FROM duckies WHERE duckie_name = 'Graduate'";
+        $result = mysqli_query($conn, $query); 
+        $row = mysqli_fetch_row($result);
+        if (isset($_POST["graduate_quantity"])) {
+            session_start();
+            $_SESSION["graduate_quantity"] = $_POST["graduate_quantity"];
+        }
+    
+    ?>
 <div class="container">
 
 <section class="header" id="header">
@@ -26,24 +37,29 @@
         <form action="cart.php" method="post">
             <div class="cart_button">
             <input type="submit" value="Cart">
-                <div class="cart">Cart</div>
             </div>
-            <input type="hidden" name="price" id="price">
         </form>
     </header>
 </section>
     
-<h2>Firefighter Duckie</h2>
+<h2>Graduate Duckie</h2>
     <div class="duckie_page">
-        <img src="images/duck_firefighter.jpg" alt="Firefighter duckie">
+        <img src="images/duck_graduate.jpg" alt="graduate duckie">
     </div>
     <div>
-        <p  class="duckie_text">Firefighter duckie is prepared and ready for his next rescue.</p> 
-        <p class="duckie_price">$2.95</p>
+        <p  class="duckie_text">Graduate duckie.</p> 
+        <p class="duckie_price">$<?php echo $row[2];?></p>
         <div class="addToCart_button">
-            <button type="button" id="firefighter_btn">
-                <div  class="add_to_cart" id="add_to_cart">Add to cart</div>
-            </button><br>
+            <form action="graduate_duckie.php" method="post">
+                <select name="graduate_quantity">
+                    <option value="">Choose quantity</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            <input type="submit" id="graduate_btn" value="Add to cart">
+                
+            </form>
         </div>
     </div>
 
